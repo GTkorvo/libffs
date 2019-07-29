@@ -1,10 +1,9 @@
 FUNCTION (SETUP_BISON_FLEX_SUB)
 
-IF ((${CMAKE_SYSTEM_NAME} STREQUAL "Darwin") OR
-   (${CMAKE_SYSTEM_NAME} STREQUAL "Linux"))
-   set (BISON_FLEX_PRECOMPILE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/cod/pregen_source/Linux")
-elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+IF (WIN32)
    set (BISON_FLEX_PRECOMPILE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/cod/pregen_source/Windows")
+elseif (UNIX)
+   set (BISON_FLEX_PRECOMPILE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/cod/pregen_source/Linux")
 else()
    if (NOT BISON_FOUND)
       message (FATAL_ERROR "Bison was not found and no pregenerated Bison/Flex"
