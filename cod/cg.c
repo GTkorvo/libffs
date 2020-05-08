@@ -47,6 +47,8 @@ enum {
     DILL_ERR   /* no type */
 };
 #define dill_type_size(c, t)  0
+#define dill_type_align(c, t) 1
+#define dill_alloc_label(c, n) 0
 #endif
 #include "cod.h"
 #include "cod_internal.h"
@@ -111,6 +113,8 @@ static int is_static_var(sm_ref expr);
 int cg_get_size(dill_stream s, sm_ref node);
 
 extern int cod_sm_get_type(sm_ref node);
+else
+#define cg_get_size(s, n) 0
 #endif
 extern int is_array(sm_ref expr);
 
