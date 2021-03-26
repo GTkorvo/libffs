@@ -15,8 +15,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-       #jobname: [ linux, macos, windows ]
-       jobname: [ linux, macos ]
+       jobname: [ linux, macos, windows ]
+       #jobname: [ linux, macos ]
        #dill: [ dill_on, dill_off ]
        dill: [ dill_on ]
        #build_type: [ Release, Debug ]
@@ -26,8 +26,8 @@ jobs:
          vm: ubuntu-latest
        - jobname: macos
          vm: macos-latest
-       #- jobname: windows
-       #  vm: windows-latest
+       - jobname: windows
+         vm: windows-latest
 
     defaults:
       run:
