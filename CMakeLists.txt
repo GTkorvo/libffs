@@ -186,9 +186,13 @@ target_include_directories(ffs PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/ffs>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 
-option(FFS_USE_DILL "Enable Dill code generation" ON)
-if(FFS_USE_DILL)
+option(FFS_USE_DILL "Enable Dill code generation" AUTO)
+if(FFS_USE_DILL STREQUAL AUTO)
+  find_package(dill 2.3.1 QUIET)
+elseif(FFS_USE_DILL)
   find_package(dill 2.3.1 REQUIRED)
+endif()
+if (DILL_FOUND)
   set(HAVE_DILL_H ON)
   option(FFS_CONVERSION_GENERATION_DEFAULT "Enable dynamic code generation" ${DILL_HAS_NATIVE_DCG})
   mark_as_advanced(FFS_CONVERSION_GENERATION_DEFAULT)
